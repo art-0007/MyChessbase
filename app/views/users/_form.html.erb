@@ -1,0 +1,35 @@
+<%= render 'shared/errors', object: @user %>
+
+<%= form_with model: @user do |f| %>
+
+    <div class="mb-3 row">
+        <div class="col-sm-14">
+            <%= f.label :email %>
+            <%= f.email_field :email, placeholder: 'Email', class: 'form-control form-control-lg' %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-14">
+            <%= f.label :name %>
+            <%= f.text_field :name, placeholder: 'Name', class: 'form-control form-control-lg' %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-14">
+            <%= f.label :password %>
+            <%= f.password_field :password, class: 'form-control form-control-lg' %>
+        </div>
+    </div><br>
+
+    <div class="mb-3 row">
+        <div class="col-sm-14">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: 'form-control form-control-lg' %>
+        </div>
+    </div><br>
+
+
+  <%= f.submit yield(:submit_title), class: 'btn btn-primary btn-lg' %>
+<% end %>
