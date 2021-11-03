@@ -1,6 +1,6 @@
 <%= render 'shared/errors', object: @user %>
 
-<%= form_with model: @user do |f| %>
+<%= form_with model: @user, html: { multipart: true } do |f| %>
 
     <div class="mb-3 row">
         <div class="col-sm-14">
@@ -13,6 +13,13 @@
         <div class="col-sm-14">
             <%= f.label :name %>
             <%= f.text_field :name, placeholder: 'Name', class: 'form-control form-control-lg' %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-14">
+            <%= f.label :avatar %>
+            <%= f.file_field :avatar, class: 'form-control form-control-lg' %>
         </div>
     </div>
 

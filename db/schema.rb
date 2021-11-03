@@ -10,30 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_185842) do
+ActiveRecord::Schema.define(version: 2021_11_01_193041) do
 
-  create_table "pazzles", force: :cascade do |t|
+  create_table "puzzles", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.integer "author_id", null: false
     t.string "solution", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"author_id\", \"pazzle_id\"", name: "index_pazzles_on_author_id_and_pazzle_id", unique: true
-    t.index ["author_id"], name: "index_pazzles_on_author_id"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index "\"user_id\", \"puzzle_id\"", name: "index_puzzles_on_user_id_and_puzzle_id", unique: true
+    t.index ["user_id"], name: "index_puzzles_on_user_id"
   end
 
-  create_table "user_solutions", force: :cascade do |t|
-    t.string "body", null: false
-    t.boolean "solved", default: false, null: false
+  create_table "solutions", force: :cascade do |t|
+    t.string "body"
+    t.boolean "solved", default: false
     t.integer "user_id", null: false
-    t.integer "pazzle_id", null: false
+    t.integer "puzzle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["pazzle_id"], name: "index_user_solutions_on_pazzle_id"
-    t.index ["user_id", "pazzle_id", "solved"], name: "index_user_solutions_on_user_id_and_pazzle_id_and_solved", unique: true
-    t.index ["user_id", "pazzle_id"], name: "index_user_solutions_on_user_id_and_pazzle_id", unique: true
-    t.index ["user_id"], name: "index_user_solutions_on_user_id"
+    t.index ["puzzle_id"], name: "index_solutions_on_puzzle_id"
+    t.index ["user_id", "puzzle_id", "solved"], name: "index_solutions_on_user_id_and_puzzle_id_and_solved", unique: true
+    t.index ["user_id", "puzzle_id"], name: "index_solutions_on_user_id_and_puzzle_id", unique: true
+    t.index ["user_id"], name: "index_solutions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,13 +45,16 @@ ActiveRecord::Schema.define(version: 2021_10_28_185842) do
     t.string "name"
     t.string "password_digest"
     t.string "remember_token_digest"
-    t.string "gravatar_hash"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "pazzles", "authors"
-  add_foreign_key "user_solutions", "pazzles"
-  add_foreign_key "user_solutions", "users"
+  add_foreign_key "puzzles", "users"
+  add_foreign_key "solutions", "puzzles"
+  add_foreign_key "solutions", "users"
 end

@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :password_digest
       t.string :remember_token_digest
-      t.string :gravatar_hash
       #t.integer :role, default: 0, null: false, index: true 
 
       t.timestamps

@@ -1,3 +1,0 @@
-class UserSolutionsController < ApplicationController
-    
-end
