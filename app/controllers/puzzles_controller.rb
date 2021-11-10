@@ -2,7 +2,7 @@ class PuzzlesController < ApplicationController
     before_action :set_puzzle!, only: %i[show edit update destroy]
 
     def index
-        @puzzles = Puzzle.order(created_at: :desc)
+        @pagy, @puzzles = pagy Puzzle.order(created_at: :desc)
         @puzzles = @puzzles.decorate
     end
 
@@ -37,7 +37,7 @@ class PuzzlesController < ApplicationController
         #binding.pry
         if @puzzle.update puzzle_params
           flash[:success] = "Puzzle updated!"
-          redirect_to puzzles_path
+          redirect_to puzzles_path(@puzzle, anchor: "puzzle-#{@puzzle.id}")
         else
           render :edit
         end
@@ -58,7 +58,7 @@ class PuzzlesController < ApplicationController
     def puzzle_params
         params
             .require(:puzzle)
-            .permit(:title, :body, :solution, :user_id, :image)
+            .permit(:title, :body, :solution, :user_id, :image, category_ids:[], categories_attributes: [:name])
     end
           
 end

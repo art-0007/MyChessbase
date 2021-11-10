@@ -9,6 +9,6 @@ class CreatePuzzles < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :puzzles, [:user_id, :puzzle_id], unique: true
+    add_index :puzzles, [:user_id, :puzzle_id]
   end
 end

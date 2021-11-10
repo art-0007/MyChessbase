@@ -21,7 +21,6 @@
   <%= sanitize @puzzle.body %>
 </div>
 
-
 <div class="btn">
     <%= link_to 'Show', puzzle_path(@puzzle), class: 'btn btn-primary' %>
     <%= link_to 'Edit', edit_puzzle_path(@puzzle), class: 'btn btn-secondary' %>
@@ -43,6 +42,7 @@
 <h2>Create Solution:</h2>
 
 <%= render 'shared/errors', object: @solution %>
+
 <%= form_with model: [@puzzle, @solution] do |f| %>
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">

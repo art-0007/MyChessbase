@@ -1,15 +1,17 @@
 <%= render 'shared/errors', object: puzzle %>
 
-<article class="card my-3">
+<article class="card my-3" id="pazzle-<%=puzzle.id%>">
     <section class="card-header">
+    
         <%=puzzle.user.show_avatar%>
         <%=puzzle.user.name_or_email%>
     </section>
 
     <div class="card-body">
+      <h4>Category: <%= puzzle.show_category %></h4>
       <h4><%= puzzle.title %></h2>
       <%if puzzle.solutions.exists? %>
-      <h5>Puzzle solved: <%= puzzle.solutions.where(user: current_user).order(created_at: :asc).first.solved%></h5>
+      <h5>Puzzle solved: <%= puzzle.show_solved current_user%></h5>
       <%end%>
       <section class="card-text">
         <time datetime="<%= puzzle.formatted_created_at %>">
@@ -17,7 +19,7 @@
         </time>
 
         <p class="my-2">
-          <%= truncate strip_tags(puzzle.body) %>
+          <%= truncate strip_tags(puzzle.body), length: 100, omission: '...(continued)' %>
         </p>
       </section>
 

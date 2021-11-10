@@ -38,5 +38,5 @@
     </div><br>
 
 
-  <%= f.submit yield(:submit_title), class: 'btn btn-primary btn-lg' %>
+  <%= f.submit (@user.new_record? ? "Create User" : "Update"), class: 'btn btn-primary btn-lg' %>
 <% end %>

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-    before_action :require_authentication, only: :destroy
-    before_action :require_no_authentication, only: %i[new create]
+  before_action :require_current_user, only: :destroy
+    before_action :require_no_current_user, only: %i[new create]
   
     
     def new

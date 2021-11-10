@@ -24,6 +24,6 @@ module CheckingSolutions
         end
         
 
-        helper_method :puzzle_user_solution, :check_solution, :solution_exists?, :puzzle_solved?, :find_solution
+        helper_method :puzzle_user_solution, :show_solved, :check_solution, :solution_exists?, :puzzle_solved?, :find_solution
     end
   end

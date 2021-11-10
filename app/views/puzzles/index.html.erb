@@ -2,8 +2,8 @@
 <% currently_at 'Puzzles' %>
 
 <h1 class="mb-4">Puzzles</h1>
-
+<%== pagination @pagy  %>
 <%=render @puzzles%>
-
+<%== pagination @pagy %>
 <%= link_to 'New pazzle', new_puzzle_path, class: 'btn btn-primary btn-lg mb-3' %>
 

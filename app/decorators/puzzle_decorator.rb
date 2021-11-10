@@ -7,8 +7,12 @@ class PuzzleDecorator < ApplicationDecorator
         h.image_tag self.image.url(:medium), class: "rounded #{css_class}"
     end
 
-    def solved 
-      solutions.where(user: current_user).order(created_at: :asc).first.solved
+    def show_solved(user) 
+      solutions.where(user: user).order(created_at: :asc).first.solved
+    end
+
+    def show_category
+      categories.order(created_at: :asc).limit(1)[0].name
     end
   
     def formatted_created_at

@@ -1,0 +1,8 @@
+<h1 class="mb-4"><%= @category.name %></h1>
+
+  <h1 class="mb-4">Puzzles</h1>
+
+  <% @puzzles.each do |puzzle| %>
+  <%= render partial: "puzzles/puzzle",locals: {puzzle: puzzle}%>
+  <%end%>
+  

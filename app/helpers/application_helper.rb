@@ -1,4 +1,11 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
+  def pagination(obj)
+    raw(pagy_bootstrap_nav(obj)) if obj.pages > 1
+  end
+
+
     def currently_at(current_page = '')
         render partial: 'shared/menu', locals: {current_page: current_page}
     end

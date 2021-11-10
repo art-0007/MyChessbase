@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_193041) do
+ActiveRecord::Schema.define(version: 2021_11_03_224008) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "puzzle_categories", force: :cascade do |t|
+    t.integer "puzzle_id"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_puzzle_categories_on_category_id"
+    t.index ["puzzle_id"], name: "index_puzzle_categories_on_puzzle_id"
+  end
 
   create_table "puzzles", force: :cascade do |t|
     t.string "title", null: false
@@ -23,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_193041) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.index "\"user_id\", \"puzzle_id\"", name: "index_puzzles_on_user_id_and_puzzle_id", unique: true
+    t.index "\"user_id\", \"puzzle_id\"", name: "index_puzzles_on_user_id_and_puzzle_id"
     t.index ["user_id"], name: "index_puzzles_on_user_id"
   end
 
@@ -54,6 +69,8 @@ ActiveRecord::Schema.define(version: 2021_11_01_193041) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "puzzle_categories", "categories"
+  add_foreign_key "puzzle_categories", "puzzles"
   add_foreign_key "puzzles", "users"
   add_foreign_key "solutions", "puzzles"
   add_foreign_key "solutions", "users"

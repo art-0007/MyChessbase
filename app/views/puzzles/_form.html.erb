@@ -9,9 +9,9 @@
     <div class="col-sm-10">
       <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
     </div>
-</div>
+  </div>
 
-<div class="mb-3 row">
+  <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :body %>
     </div>
@@ -19,9 +19,9 @@
     <div class="col-sm-10">
       <%= f.text_area :body, class: 'form-control' %>
     </div>
-</div>
+  </div>
 
-<div class="mb-3 row">
+  <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :solution %>
     </div>
@@ -29,9 +29,9 @@
     <div class="col-sm-10">
       <%= f.text_field :solution, class: 'form-control' %>
     </div>
-</div>
+  </div>
 
-<div class="mb-3 row">
+  <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :image %>
     </div>
@@ -39,8 +39,30 @@
     <div class="col-sm-10">
       <%= f.file_field :image,  class: 'form-control' %>
     </div>
-</div>
+  </div>
 
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :category, "Category collection:" %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :category %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.fields_for :categories, @puzzle.categories.build do |categories_fields| %>
+        <%= categories_fields.text_field :name, class: 'form-control' %>
+      <% end %>
+    </div>
+  </div>
 
 
 
