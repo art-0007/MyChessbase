@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   match 'auth/:google_oauth2/callback' => 'sessions#omni_sign_in', via: %i[get post]
   match 'auth/:github/callback' => 'sessions#omni_sign_in', via: %i[get post]
   match '/auth/:facebook/callback' => 'sessions#omni_sign_in', via: %i[get post]
+
+  namespace :admin do
+    resources :users, only: %i[index]
+  end
 end
