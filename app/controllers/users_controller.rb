@@ -9,8 +9,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params).decorate
-        
+        @user = User.new(user_params).decorate 
         if @user.save
             sign_in @user
           flash[:success] = "Welcome to the app, #{@user.name_or_email}!"
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
       def update
         if @user.update(user_params)
             flash[:notice] = "User was updated!"
-            redirect_to @user
+            redirect_to root_path
         else
             render :edit
         end     

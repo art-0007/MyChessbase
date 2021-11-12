@@ -4,7 +4,7 @@ class Puzzle < ApplicationRecord
     has_many :puzzle_categories
     has_many :categories, through: :puzzle_categories
 
-    validates :categories, presence: true
+    #validates :categories, presence: true
 
     has_attached_file :image, styles: { medium: "400x400#" }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

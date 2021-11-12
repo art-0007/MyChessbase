@@ -10,4 +10,8 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
+  match 'auth/:google_oauth2/callback' => 'sessions#omni_sign_in', via: [:get, :post]
+  match 'auth/:github/callback' => 'sessions#omni_sign_in', via: [:get, :post]
+  match '/auth/:facebook/callback' => 'sessions#omni_sign_in', via: [:get, :post]
+
 end

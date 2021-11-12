@@ -25,6 +25,13 @@ gem 'draper', '~> 4.0'
 gem "paperclip", "~> 6.0.0"
 gem 'pagy', '~> 4.10'
 
+gem 'dotenv-rails'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -36,6 +43,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'faker', '~> 2'
+  
 end
 
 group :development do
