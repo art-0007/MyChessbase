@@ -24,6 +24,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'draper', '~> 4.0'
 gem "paperclip", "~> 6.0.0"
 gem 'pagy', '~> 4.10'
+gem "valid_email2", '~> 4.0'
+
 
 gem 'dotenv-rails'
 gem "omniauth-rails_csrf_protection"
@@ -31,6 +33,8 @@ gem 'omniauth-facebook'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
+
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -43,7 +47,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
   gem 'faker', '~> 2'
-  
+  gem 'rubocop', '~> 1.20', require: false
+  gem 'rubocop-rails', '~> 2.11', require: false
+  gem 'rubocop-performance','~> 1.12', require: false
+
+
 end
 
 group :development do
