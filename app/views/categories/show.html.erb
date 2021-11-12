@@ -1,4 +1,9 @@
 <% provide :page_title, @category.name %>
 <% currently_at 'Category' %>
 
-<%= render @category %>
+<h1 class="mb-4"><%= @category.name %></h1>
+
+<h1 class="mb-4">Puzzles</h1>
+<%== pagination @pagy %>
+<%= render @puzzles %>
+<%== pagination @pagy %>

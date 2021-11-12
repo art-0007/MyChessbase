@@ -1,26 +1,32 @@
+# frozen_string_literal: true
+
 module Authentication
-    extend ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
-  included do 
-
-
-
+  # rubocop:disable Metrics/BlockLength
+  included do
     private
- 
+
     def current_user
-      if session[:user_id].present?
-        @current_user ||= User.find_by(id: session[:user_id]).decorate 
-      elsif cookies.encrypted[:user_id].present?
-        user = User.find_by(id:  cookies.encrypted[:user_id])
-        if user&.remember_token_authenticated?(cookies.encrypted[:remember_token])
-          sign_in(user)
-          @current_user ||= user.decorate
-        end
-      end
+      user = session[:user_id].present? ? user_from_session : user_from_remember_token
+      @current_user ||= user&.decorate
+    end
+
+    def user_from_remember_token
+      user = User.find_by(id: cookies.encrypted[:user_id])
+      token = cookies.encrypted[:remember_token]
+      return unless user&.remember_token_authenticated?(token)
+
+      sign_in(user)
+      user
+    end
+
+    def user_from_session
+      User.find_by(id: session[:user_id])
     end
 
     def user_signed_in?
-      current_user.present?  
+      current_user.present?
     end
 
     def remember(user)
@@ -35,32 +41,30 @@ module Authentication
       cookies.delete :remember_token
     end
 
-
     def require_current_user
       return if user_signed_in?
 
-      flash[:warning] = "You are not signed in!"
+      flash[:warning] = 'You are not signed in!'
       redirect_to root_path
     end
 
     def require_no_current_user
-      return if !user_signed_in?
+      return unless user_signed_in?
 
-      flash[:warning] = "You are already signed in!"
+      flash[:warning] = 'You are already signed in!'
       redirect_to root_path
     end
 
     def sign_in(user)
-      session[:user_id] = user.id 
+      session[:user_id] = user.id
     end
 
     def sign_out
       session.delete :user_id
-      @current_user = nil  
+      @current_user = nil
     end
 
     helper_method :current_user, :user_signed_in?, :sign_out
   end
-    
+  # rubocop:enable Metrics/BlockLength
 end
-

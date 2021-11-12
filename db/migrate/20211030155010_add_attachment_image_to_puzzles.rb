@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttachmentImageToPuzzles < ActiveRecord::Migration[6.1]
   def self.up
     change_table :puzzles do |t|

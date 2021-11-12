@@ -8,4 +8,3 @@ class ApplicationDecorator < Draper::Decorator
   #     h.number_to_percentage object.amount, precision: 2
   #   end
 end
-

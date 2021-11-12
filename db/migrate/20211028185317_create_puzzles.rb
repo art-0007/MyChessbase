@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePuzzles < ActiveRecord::Migration[6.1]
   def change
     create_table :puzzles do |t|
@@ -5,10 +7,10 @@ class CreatePuzzles < ActiveRecord::Migration[6.1]
       t.text :body, null: false
       t.string :solution, null: false
       t.belongs_to :user, null: false, foreign_key: true
-      
+
       t.timestamps
     end
 
-    add_index :puzzles, [:user_id, :puzzle_id]
+    add_index :puzzles, %i[user_id puzzle_id]
   end
 end

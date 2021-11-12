@@ -1,22 +1,24 @@
-class CategoriesController < ApplicationController
+# frozen_string_literal: true
 
-    def index
-      @categories = Category.all  
-    end
-  
-    def show
-      @category = Category.find(params[:id]).decorate
-      @puzzles = @category.puzzles.decorate
-    end
-  
-    def new
-      @category = Category.new(category_params) 
-    end
-  
-    private
-  
-    def category_params
-      params.require(:category).permit(:name) 
-    end
-    
+class CategoriesController < ApplicationController
+  def index
+    @pagy, @categories = pagy Category.order(created_at: :desc), items: 5
+    @categories = @categories.decorate
   end
+
+  def show
+    @category = Category.find(params[:id]).decorate
+    @pagy, @puzzles = pagy @category.puzzles, items: 5
+    @puzzles = @puzzles.decorate
+  end
+
+  def new
+    @category = Category.new(category_params)
+  end
+
+  private
+
+  def category_params
+    params.require(:category).permit(:name)
+  end
+end
