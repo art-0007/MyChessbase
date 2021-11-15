@@ -2,19 +2,20 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  concern :commentable do
+    resources :comments, only: %i[create destroy]
+  end
+
   resource :session, only: %i[new create destroy]
   resources :users, only: %i[new create show edit update]
   resources :categories
   resources :articles
 
-  resources :puzzles do
-    resources :comments, only: %i[create destroy]
+  resources :puzzles, concerns: :commentable do
     resources :solutions, exept: %i[new show destroy]
   end
 
-  resources :articles, exept: %i[new show] do
-    resources :comments, only: %i[create destroy]
-  end
+  resources :articles, exept: %i[new show], concerns: :commentable
 
   root 'pages#index'
 

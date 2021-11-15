@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Admin
-class UsersController < ApplicationController
+  class UsersController < ApplicationController
     before_action :require_current_user
 
     def index
-        @pagy, @users = pagy User.order(created_at: :desc)   
+      @pagy, @users = pagy User.order(created_at: :desc)
     end
-end
+  end
 end
