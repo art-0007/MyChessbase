@@ -39,3 +39,14 @@ end
   puzzle = Puzzle.create title: title, body: body, solution: solution, user: user
   puzzle.categories << @category3
 end
+
+
+20.times do
+  email = "#{SecureRandom.hex(7)}@gmail.com"
+  name = Faker::Name.first_name
+  password = 'test'
+  title = Faker::Hipster.sentence(word_count: 2)
+  body = Faker::Lorem.paragraph(sentence_count: 8, supplemental: true, random_sentences_to_add: 4)
+  user = User.create name: name, email: email, password: password
+  Article.create title: title, body: body, user: user
+end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Puzzle < ApplicationRecord
+  include Commentable
+  
   belongs_to :user
   has_many :solutions, dependent: :destroy
   has_many :puzzle_categories, dependent: nil

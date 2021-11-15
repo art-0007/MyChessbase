@@ -1,0 +1,26 @@
+<%= render 'shared/errors', object: article %>
+
+<article class="card my-3" id="pazzle-<%=article.id%>">
+    <section class="card-header">
+    
+        <%=article.user.show_avatar%>
+        <%=article.user.name_or_email%>
+    </section>
+
+    <div class="card-body">
+      <section class="card-text">
+        <time datetime="<%= article.formatted_created_at %>">
+          <small><%= article.formatted_created_at %></small>
+        </time>
+
+        <p class="my-2">
+          <%= truncate strip_tags(article.body), length: 100, omission: '...(continued)' %>
+        </p>
+      </section>
+
+      <%= link_to 'Show', article_path(article), class: 'btn btn-primary' %> 
+      <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-secondary' %>
+      <%= link_to 'Destroy', article_path(article), class: 'btn btn-danger',
+        data: {method: :delete, confirm: 'Are you sure?'} %>
+    </div>
+</article>

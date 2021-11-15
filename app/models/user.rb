@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :puzzles, dependent: :destroy
   has_many :solutions, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 

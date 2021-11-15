@@ -1,0 +1,30 @@
+<% provide :page_title, @article.title %>
+<% currently_at 'article' %>
+
+<h1 class="mb-4"><%= @article.title %></h1>
+
+<div class="mb-3">
+  <h3><%= @article.user.name_or_email %></h3>
+  <%=@article.user.show_avatar %>
+</div>
+
+<time datetime="<%= @article.formatted_created_at %>">
+  <%= @article.formatted_created_at %>
+</time>
+
+
+
+<hr class="my-3">
+<div class="lead my-3">
+  <%= sanitize @article.body %>
+</div>
+
+<div class="btn">
+    
+    <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-secondary' %>
+    <%= link_to 'Delete', article_path(@article), class: 'btn btn-danger',
+      data: {method: :delete, confirm: 'A you sure?'} %>
+</div>
+
+<%= render 'comments/commentable', commentable: @article, comment: @comment,
+  html_id: 'articleComments' %>

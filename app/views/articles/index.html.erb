@@ -1,0 +1,8 @@
+<% provide :page_title, 'Articles' %>
+<% currently_at 'Articles' %>
+
+<h1 class="mb-4">Articles</h1>
+<%= link_to 'New Article', new_article_path, class: 'btn btn-primary btn-lg mb-3' %>
+<%== pagination @pagy %>
+<%=render @articles%>
+<%== pagination @pagy %>

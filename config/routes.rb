@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   resource :session, only: %i[new create destroy]
   resources :users, only: %i[new create show edit update]
   resources :categories
+  resources :articles
 
   resources :puzzles do
+    resources :comments, only: %i[create destroy]
     resources :solutions, exept: %i[new show destroy]
+  end
+
+  resources :articles, exept: %i[new show] do
+    resources :comments, only: %i[create destroy]
   end
 
   root 'pages#index'

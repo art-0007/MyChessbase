@@ -4,7 +4,7 @@ class PuzzlesController < ApplicationController
   before_action :set_puzzle!, only: %i[show edit update destroy]
 
   def index
-    @pagy, @puzzles = pagy Puzzle.order(created_at: :desc), items: 5
+    @pagy, @puzzles = pagy Puzzle.includes(:user).order(created_at: :desc), items: 5
     @puzzles = @puzzles.decorate
   end
 

@@ -8,6 +8,8 @@
   <%=@puzzle.user.show_avatar %>
 </div>
 
+
+
 <time datetime="<%= @puzzle.formatted_created_at %>">
   <%= @puzzle.formatted_created_at %>
 </time>
@@ -22,7 +24,7 @@
 </div>
 
 <div class="btn">
-    <%= link_to 'Show', puzzle_path(@puzzle), class: 'btn btn-primary' %>
+
     <%= link_to 'Edit', edit_puzzle_path(@puzzle), class: 'btn btn-secondary' %>
     <%= link_to 'Delete', puzzle_path(@puzzle), class: 'btn btn-danger',
       data: {method: :delete, confirm: 'A you sure?'} %>
@@ -54,6 +56,9 @@
     </div>
   </div>
 
-  <%= f.submit "Submit solution!", class: 'btn btn-primary' %>
+  <%= f.submit "Submit solution!", class: 'btn btn-primary mb-3' %>
 <% end %>
 <%end%>
+
+<%= render 'comments/commentable', commentable: @puzzle, comment: @comment,
+  html_id: 'puzzleComments' %>
