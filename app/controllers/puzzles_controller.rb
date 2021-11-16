@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class PuzzlesController < ApplicationController
+  before_action :require_current_user, exept: %i[show index]
   before_action :set_puzzle!, only: %i[show edit update destroy]
+  before_action :authorize_puzzle!
+  after_action :verify_authorized
 
   def index
     @pagy, @puzzles = pagy Puzzle.includes(:user).order(created_at: :desc), items: 5
@@ -49,6 +52,10 @@ class PuzzlesController < ApplicationController
 
   private
 
+  def authorize_puzzle!
+    authorize(@puzzle || Puzzle)
+  end
+
   def set_puzzle!
     @puzzle = Puzzle.find params[:id]
   end
@@ -61,4 +68,6 @@ class PuzzlesController < ApplicationController
          puzzle_category_ids: [], pazzle_categories_attributes: [:complexity]
         )
   end
+
+  
 end

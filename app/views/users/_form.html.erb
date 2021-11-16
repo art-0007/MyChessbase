@@ -25,6 +25,14 @@
 
     <div class="mb-3 row">
         <div class="col-sm-14">
+            <%= f.label :role %>
+            <%= f.text_field :role, placeholder: 'Role', 
+            class: 'form-control form-control-lg',readonly: true %>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <div class="col-sm-14">
             <%= f.label :password %>
             <%= f.password_field :password, class: 'form-control form-control-lg' %>
         </div>
