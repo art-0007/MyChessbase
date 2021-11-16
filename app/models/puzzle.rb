@@ -7,8 +7,8 @@ class Puzzle < ApplicationRecord
   has_many :solutions, dependent: :destroy
   has_many :puzzle_categories, dependent: nil
   has_many :categories, through: :puzzle_categories
-  has_many :puzzle_tags, dependent: :destroy
-  has_many :tags, through: :puzzle_tags
+  # has_many :puzzle_tags, dependent: :destroy
+  # has_many :tags, through: :puzzle_tags
 
   # validates :categories, presence: true
 

@@ -13,6 +13,9 @@
             class: 'nav-link px-2', current_page: current_page %></li>
             <li><%= nav_tab 'Articles', articles_path,
             class: 'nav-link px-2', current_page: current_page %></li>
+            <li><%= nav_tab 'Users', admin_users_path,
+            class: 'nav-link px-2', current_page: current_page  if 
+            current_user&.admin_role?%></li>
         </ul>
 
         <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">

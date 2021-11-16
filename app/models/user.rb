@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
+  
   attr_accessor :remember_token
 
   has_secure_password

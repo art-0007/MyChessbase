@@ -4,7 +4,7 @@ class ArticleDecorator < ApplicationDecorator
   delegate_all
   decorates_association :user
 
-  def show_img(css_class: '')
+  def show_image(css_class: '')
     h.image_tag image.url(:medium), class: "rounded #{css_class}"
   end
 

@@ -2,11 +2,8 @@
 
 class PuzzlesController < ApplicationController
   before_action :set_puzzle!, only: %i[show edit update destroy]
-  #before_action :fetch_tags, only: %i[new edit]
 
   def index
-    #binding.pry
-    #@tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
     @pagy, @puzzles = pagy Puzzle.includes(:user).order(created_at: :desc), items: 5
     @puzzles = @puzzles.decorate
   end
@@ -49,10 +46,6 @@ class PuzzlesController < ApplicationController
   end
 
   private
-
-  # def fetch_tags
-  #   @tags = Tag.all
-  # end
 
   def set_puzzle!
     @puzzle = Puzzle.find params[:id]

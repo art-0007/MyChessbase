@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   match '/auth/:facebook/callback' => 'sessions#omni_sign_in', via: %i[get post]
 
   namespace :admin do
-    resources :users, only: %i[index]
+    resources :users, exept: %i[new show]
   end
 end

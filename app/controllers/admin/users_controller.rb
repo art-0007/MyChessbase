@@ -5,7 +5,7 @@ module Admin
     before_action :require_current_user
 
     def index
-      @pagy, @users = pagy User.order(created_at: :desc)
+      @pagy, @users = pagy User.order(created_at: :asc)
     end
   end
 end

@@ -18,10 +18,6 @@
           <small><%= puzzle.formatted_created_at %></small>
         </time>
 
-        <div class="my-2">
-          <%= render puzzle.tags %>
-        </div>
-
         <p class="my-2">
           <%= truncate strip_tags(puzzle.body), length: 100, omission: '...(continued)' %>
         </p>
