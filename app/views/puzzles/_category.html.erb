@@ -1,27 +1,34 @@
+<div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= f.label :category, "Category collection:" %>
+    </div>
 
+    <div class="col-sm-10">
       <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
     </div>
-  </div>
+</div>
 
-  <div class="mb-3 row">
+<div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :category %>
     </div>
 
     <div class="col-sm-10">
       <%= f.fields_for :categories, @puzzle.categories.build do |categories_fields| %>
-        <%= categories_fields.text_field :name, class: 'form-control' %>
-    <div class="mb-3 row">   
-      <% end %>
-    </div>
+        <%= categories_fields.text_field :name, class: 'form-control mb-3' %>
+        <% end %>
+    <div>   
+</div>
 
+<div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
-      <%= f.label :puzzle_categories %>
+        <%= f.label :puzzle_categories, 'Puzzle complexity' %>
     </div>
 
-    <div class="col-sm-10"> 
-      <%= f.select :complexity, puzzle_complexities, {}, class: 'form-select form-select-lg' %>
+    <div class="col-sm-3"> 
+        <%= f.select :complexity, puzzle_complexities, {}, class: 'form-select form-select-lg' %>
     </div>
+</div>
 
     
 

@@ -13,7 +13,6 @@ module CheckingSolutions
     end
 
     def puzzle_solved?
-      # binding.pry
       find_solution.solved if solution_exists?
     end
 

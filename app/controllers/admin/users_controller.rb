@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 module Admin
-  class UsersController < ApplicationController
+  class UsersController < BaseController
     before_action :require_current_user
     before_action :set_user!, only: %i[edit update destroy]
+    before_action :authorize_user!
+    after_action :verify_authorized
     
     def index
       @pagy, @users = pagy User.order(created_at: :asc)
@@ -30,6 +32,10 @@ module Admin
 
     def set_user!
       @user = User.find params[:id]
+    end
+
+    def authorize_user!
+      authorize(@user || User)
     end
 
     def user_params

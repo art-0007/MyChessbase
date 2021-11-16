@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class ArticlesController < ApplicationController
+  before_action :require_current_user, except: %i[show index]
   before_action :set_article!, only: %i[show edit update destroy]
+  before_action :authorize_article!
+  after_action :verify_authorized
 
   def index
     @pagy, @articles = pagy Article.includes(:user).order(created_at: :desc), items: 5
@@ -48,6 +51,10 @@ class ArticlesController < ApplicationController
 
   def set_article!
     @article = Article.find params[:id]
+  end
+
+  def authorize_article!
+    authorize(@article || Article)
   end
 
   def article_params

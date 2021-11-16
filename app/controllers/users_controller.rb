@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   before_action :require_current_user, only: %i[show edit update]
 
   before_action :set_user!, only: %i[show edit update destroy]
+  before_action :authorize_user!
+  after_action :verify_authorized
 
   def new
     @user = User.new
@@ -41,6 +43,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def authorize_user!
+    authorize(@user || User)
+  end
 
   def set_user!
     @user = User.find(params[:id])

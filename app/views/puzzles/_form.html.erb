@@ -41,15 +41,8 @@
     </div>
   </div>
 
-
-  <div class="mb-3 row">
-    <div class="col-sm-2 col-form-label">
-      <%= f.label :category, "Category collection:" %>
-    </div>
-
-    <div class="col-sm-10">
       <%=render 'category', f: f %>
-    </div>
+    
 
   <%= f.submit "Submit Puzzle!", class: 'btn btn-primary' %>
 <% end %>

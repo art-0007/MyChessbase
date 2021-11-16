@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  before_action :require_current_user, except: %i[show index]
+  before_action :authorize_category!
   after_action :verify_authorized
   
   def index
@@ -19,6 +21,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def authorize_category!
+    authorize(@category || Category)
+  end
 
   def category_params
     params.require(:category).permit(:name)

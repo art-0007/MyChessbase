@@ -3,6 +3,7 @@
 class CommentsController < ApplicationController
   before_action :set_commentable!
   after_action :verify_authorized
+  
 
   def create
     @comment = @commentable.comments.build comment_params
