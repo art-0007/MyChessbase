@@ -14,6 +14,8 @@ class PuzzlesController < ApplicationController
 
   def create
     @puzzle = current_user.puzzles.build puzzle_params
+    puzzle_category = @puzzle.puzzle_categories.last
+    puzzle_category.complexity = params[:puzzle][:complexity]
     if @puzzle.save
       flash[:success] = 'Puzzle created!'
       redirect_to puzzles_path
@@ -54,6 +56,9 @@ class PuzzlesController < ApplicationController
   def puzzle_params
     params
       .require(:puzzle)
-      .permit(:title, :body, :solution, :user_id, :image, tag_ids: [], category_ids: [], categories_attributes: [:name])
+      .permit(:title, :body, :solution, :user_id, :image, tag_ids: [],
+         category_ids: [], categories_attributes: [:name],
+         puzzle_category_ids: [], pazzle_categories_attributes: [:complexity]
+        )
   end
 end

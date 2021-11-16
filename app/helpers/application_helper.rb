@@ -34,4 +34,10 @@ module ApplicationHelper
       base_title
     end
   end
+
+  def puzzle_complexities
+    PuzzleCategory.complexities.keys.map do |complexity|
+          [complexity.titleize, complexity]
+        end
+  end
 end

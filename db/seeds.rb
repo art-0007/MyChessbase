@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-@category1 = Category.create name: 'EASY PUZZLES'
-@category2 = Category.create name: 'HARD PUZZLES'
-@category3 = Category.create name: 'MEDIUM PUZZLES'
+@category1 = Category.create name: 'OPENING'
+@category2 = Category.create name: 'MIDDLEGAME'
+@category3 = Category.create name: 'ENDGAME'
 
 10.times do
   email = "#{SecureRandom.hex(7)}@gmail.com"
