@@ -2,6 +2,7 @@
 
 class Puzzle < ApplicationRecord
   include Commentable
+  include Authors
 
   belongs_to :user
   has_many :solutions, dependent: :destroy

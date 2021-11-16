@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PuzzlesController < ApplicationController
-  before_action :require_current_user, exept: %i[show index]
+  before_action :require_current_user, except: %i[show index]
   before_action :set_puzzle!, only: %i[show edit update destroy]
   before_action :authorize_puzzle!
   after_action :verify_authorized

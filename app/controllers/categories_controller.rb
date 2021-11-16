@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  after_action :verify_authorized
+  
   def index
     @pagy, @categories = pagy Category.order(created_at: :desc), items: 5
     @categories = @categories.decorate

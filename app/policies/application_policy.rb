@@ -4,12 +4,13 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
+    #binding.pry
+    @user = user || GuestUser.new
     @record = record
   end
 
   def index?
-    false
+    true
   end
 
   def show?

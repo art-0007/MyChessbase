@@ -2,9 +2,11 @@
 
 class CommentsController < ApplicationController
   before_action :set_commentable!
+  after_action :verify_authorized
 
   def create
     @comment = @commentable.comments.build comment_params
+    authorize @comment
 
     if @comment.save
       flash[:success] = 'Comment created!'
@@ -17,6 +19,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @commentable.comments.find params[:id]
+    authorize comment
     comment.destroy
     flash[:success] = 'Comment deleted!'
     redirect_to @commentable

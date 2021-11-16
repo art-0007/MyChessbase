@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
-  
+
   attr_accessor :remember_token
 
   has_secure_password
@@ -30,6 +30,14 @@ class User < ApplicationRecord
     return false if remember_token_digest.blank?
 
     BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
+  end
+
+  def author?(obj)
+    obj.user == self
+  end
+
+  def guest?
+    false
   end
 
   private

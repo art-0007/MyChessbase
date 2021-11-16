@@ -24,10 +24,13 @@
 </div>
 
 <div class="btn">
-
+    <% if policy(@puzzle).edit? %>
     <%= link_to 'Edit', edit_puzzle_path(@puzzle), class: 'btn btn-secondary' %>
+    <%end%>
+    <% if policy(@puzzle).destroy? %>
     <%= link_to 'Delete', puzzle_path(@puzzle), class: 'btn btn-danger',
       data: {method: :delete, confirm: 'A you sure?'} %>
+     <%end%>
 </div>
 
 <%if puzzle_solved?%>
@@ -36,8 +39,10 @@
     <h2>Solution: <%= puzzle_user_solution %>.</h2>
   </div>
 
+  <% if policy(:puzzle).destroy? %>
   <%= link_to 'Delete', puzzle_solution_path(@puzzle, find_solution), class: 'btn btn-danger btn-xs',
         data: {method: :delete, confirm: 'Are you sure?'} %>
+    <%end%>  
 <%else%>
 <hr class="my-3">
 

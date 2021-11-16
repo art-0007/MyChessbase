@@ -9,7 +9,7 @@ class PuzzlePolicy < ApplicationPolicy
     end
   
     def create?
-      user.present?
+      !user.guest?
     end
   
     def new?
@@ -17,7 +17,7 @@ class PuzzlePolicy < ApplicationPolicy
     end
   
     def update?
-      false
+        user.admin_role? || user.moderator_role? || user.author?(record)
     end
   
     def edit?
@@ -25,7 +25,7 @@ class PuzzlePolicy < ApplicationPolicy
     end
   
     def destroy?
-      false
+        user.admin_role? || user.author?(record)
     end
   
   end
