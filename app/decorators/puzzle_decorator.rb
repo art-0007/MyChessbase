@@ -10,11 +10,15 @@ class PuzzleDecorator < ApplicationDecorator
   end
 
   def show_solved(user)
-    solutions.where(user: user).order(created_at: :asc).first.solved
+    solutions.where(user: user).order(created_at: :desc).first.solved
   end
 
   def show_category
-    categories.order(created_at: :asc).limit(1)[0].name
+    categories.order(created_at: :desc).limit(1)[0].name
+  end
+
+  def show_complexity
+    puzzle_categories.order(created_at: :desc).limit(1)[0].complexity
   end
 
   def formatted_created_at
