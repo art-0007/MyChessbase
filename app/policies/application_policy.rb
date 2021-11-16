@@ -4,7 +4,7 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    #binding.pry
+    # binding.pry
     @user = user || GuestUser.new
     @record = record
   end

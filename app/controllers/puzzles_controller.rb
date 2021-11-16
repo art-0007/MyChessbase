@@ -63,11 +63,8 @@ class PuzzlesController < ApplicationController
   def puzzle_params
     params
       .require(:puzzle)
-      .permit(:title, :body, :solution, :user_id, :image, tag_ids: [],
-         category_ids: [], categories_attributes: [:name],
-         puzzle_category_ids: [], pazzle_categories_attributes: [:complexity]
-        )
+      .permit(:title, :body, :solution, :user_id, :image, category_ids: [],
+                                                          categories_attributes: [:name], puzzle_category_ids: [],
+                                                          pazzle_categories_attributes: [:complexity])
   end
-
-  
 end

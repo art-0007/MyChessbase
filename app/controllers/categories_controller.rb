@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   before_action :require_current_user, except: %i[show index]
   before_action :authorize_category!
   after_action :verify_authorized
-  
+
   def index
     @pagy, @categories = pagy Category.order(created_at: :desc), items: 5
     @categories = @categories.decorate

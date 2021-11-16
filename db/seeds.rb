@@ -50,7 +50,6 @@ end
   Article.create title: title, body: body, user: user
 end
 
-
 User.create(name: 'Alex', email: 'alex01@gmail.com', password: 'test007', role: 2)
 User.create(name: 'Mark', email: 'mark01@gmail.com', password: 'test007', role: 1)
 

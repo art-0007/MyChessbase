@@ -6,7 +6,7 @@ module Admin
     before_action :set_user!, only: %i[edit update destroy]
     before_action :authorize_user!
     after_action :verify_authorized
-    
+
     def index
       @pagy, @users = pagy User.order(created_at: :asc)
     end
@@ -40,8 +40,8 @@ module Admin
 
     def user_params
       params
-      .require(:user)
-      .permit(:email, :name, :password, :password_confirmation, :role)
+        .require(:user)
+        .permit(:email, :name, :password, :password_confirmation, :role)
     end
   end
 end

@@ -26,9 +26,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'draper', '~> 4.0'
 gem 'pagy', '~> 4.10'
 gem 'paperclip', '~> 6.0.0'
+gem 'pundit', '~> 2.1.1'
 gem 'valid_email2', '~> 4.0'
-gem "pundit", '~> 2.1.1'
-
 
 gem 'dotenv-rails'
 gem 'omniauth'
