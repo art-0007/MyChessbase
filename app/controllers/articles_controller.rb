@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   def index
     @pagy, @articles = pagy Article.all_by_tags(params[:tag_ids]), items: 5
     @articles = @articles.decorate
+    @tags = Tag.all
   end
 
   def new

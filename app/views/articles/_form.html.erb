@@ -3,8 +3,7 @@
 <%= form_with model: @article, html: { multipart: true } do |f| %>
 
   <div class="mb-3 row">
-      <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true,
-      class: 'js-multiple-select  w-100' %>
+      <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true %>
   </div>
 
   <div class="mb-3 row">
