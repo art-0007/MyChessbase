@@ -11,7 +11,7 @@
       <h4>Category: <%= puzzle.show_category %></h4>
       <h4>Complexity: <%= puzzle.show_complexity %></h4>
       <h4><%= puzzle.title %></h2>
-      <%if puzzle.solutions.exists? %>
+      <%if puzzle.solutions.where(user: current_user).exists? %>
       <h5>Puzzle solved: <%= puzzle.show_solved current_user%></h5>
       <%end%>
       <section class="card-text">

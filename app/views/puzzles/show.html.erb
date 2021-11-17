@@ -33,7 +33,7 @@
      <%end%>
 </div>
 
-<%if puzzle_solved?%>
+<%if @puzzle.solutions.where(user: current_user).exists?%>
   <div class="lead my-3">
     <h2>Puzzle solved <%= find_solution.decorate.formatted_created_at %> by <%=current_user.name_or_email%>.</h2>
     <h2>Solution: <%= puzzle_user_solution %>.</h2>

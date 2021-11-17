@@ -6,5 +6,5 @@ class ApplicationController < ActionController::Base
   include Authentication
   include Authorization
   include ErrorHandling
-  include CheckingSolutions
+  include CheckingSolution
 end
