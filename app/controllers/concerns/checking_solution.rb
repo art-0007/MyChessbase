@@ -5,6 +5,7 @@ module CheckingSolution
 
   included do
     private
+
     def check_solution
       @solution.solved = true if @puzzle.solution == params[:solution][:body]
     end
