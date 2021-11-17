@@ -4,11 +4,11 @@
 <h1 class="mb-4">Articles</h1>
 <%= link_to 'New Article', new_article_path, class: 'btn btn-primary btn-lg mb-3' %>
 
-<section class="mb-5">
+<section class="mb-3">
   <h2>Search by tags</h2>
 
 <%= form_with url: articles_path, method: :get do |f| %>
-    <div class="mb-3">
+    <div class="mb-2">
       <%= f.collection_select :tag_ids, (@tags || []), :id, :title, {selected: params[:tag_ids]},
         multiple: true, required: true %>
 </div>

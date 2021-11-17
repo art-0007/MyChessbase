@@ -10,7 +10,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.guest?
+    user.guest?
   end
 
   def new?
@@ -26,6 +26,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.author?(record)
+    false
   end
 end

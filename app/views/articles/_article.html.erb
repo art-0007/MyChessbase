@@ -6,11 +6,12 @@
         <%=article.user.show_avatar%>
         <%=article.user.name_or_email%>
     </section>
-
+    
     <div class="card-body">
       <section class="card-text">
+        <h4><%= article.title %></h2>
         <time datetime="<%= article.formatted_created_at %>">
-          <small><%= article.formatted_created_at %></small>
+          <small>Created at: <%= article.formatted_created_at %></small>
         </time>
 
         <div class="my-2">
