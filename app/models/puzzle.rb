@@ -10,7 +10,7 @@ class Puzzle < ApplicationRecord
   has_many :categories, through: :puzzle_categories
   # has_many :puzzle_tags, dependent: :destroy
   # has_many :tags, through: :puzzle_tags
-
+  scope :puzzles_sorted, -> { includes(:user).order(created_at: :desc) }
   # validates :categories, presence: true
 
   has_attached_file :image, styles: { medium: '400x400#' }

@@ -7,7 +7,7 @@ class PuzzlesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @pagy, @puzzles = pagy Puzzle.includes(:user).order(created_at: :desc), items: 5
+    @pagy, @puzzles = pagy Puzzle.puzzles_sorted, items: 5
     @puzzles = @puzzles.decorate
   end
 

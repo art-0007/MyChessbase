@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
   before_action :set_article!, only: %i[show edit update destroy]
   before_action :authorize_article!
   after_action :verify_authorized
+  before_action :fetch_tags, only: %i[new edit]
 
   def index
     @pagy, @articles = pagy Article.includes(:user).order(created_at: :desc), items: 5
@@ -48,6 +49,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def fetch_tags
+    @tags = Tag.all
+  end
 
   def set_article!
     @article = Article.find params[:id]
