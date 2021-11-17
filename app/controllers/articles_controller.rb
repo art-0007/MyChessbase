@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   before_action :fetch_tags, only: %i[new edit]
 
   def index
-    @pagy, @articles = pagy Article.includes(:user).order(created_at: :desc), items: 5
+    @pagy, @articles = pagy Article.all_by_tags(params[:tag_ids]), items: 5
     @articles = @articles.decorate
   end
 
@@ -65,6 +65,6 @@ class ArticlesController < ApplicationController
   def article_params
     params
       .require(:article)
-      .permit(:title, :body, :user_id)
+      .permit(:title, :body, :user_id, tag_ids: [])
   end
 end

@@ -13,6 +13,10 @@
           <small><%= article.formatted_created_at %></small>
         </time>
 
+        <div class="my-2">
+            <%= render article.tags %>
+        <div>
+
         <p class="my-2">
           <%= truncate strip_tags(article.body), length: 100, omission: '...(continued)' %>
         </p>
