@@ -1,6 +1,12 @@
 <%= render 'shared/errors', object: @article %>
 
 <%= form_with model: @article, html: { multipart: true } do |f| %>
+
+  <div class="mb-3 row">
+      <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true,
+      class: 'js-multiple-select  w-100' %>
+  </div>
+
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
       <%= f.label :title %>
@@ -31,15 +37,7 @@
     </div>
   </div>
 
-  <div class="mb-3 row">
-    <div class="col-sm-2 col-form-label">
-      <%= f.label :tags %>
-    </div>
-
-    <div class="col-sm-10">
-      <%= f.collection_select :tag_ids, tags, :id, :title, {}, multiple: true %>
-    </div>
-  </div>
+  
 
   <%= f.submit "Create Article!", class: 'btn btn-primary' %>
 <% end %>
