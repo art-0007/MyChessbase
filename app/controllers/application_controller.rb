@@ -7,4 +7,5 @@ class ApplicationController < ActionController::Base
   include Authorization
   include ErrorHandling
   include CheckingSolution
+  include Sorting
 end

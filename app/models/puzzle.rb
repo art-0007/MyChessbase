@@ -8,10 +8,10 @@ class Puzzle < ApplicationRecord
   has_many :solutions, dependent: :destroy
   has_many :puzzle_categories, dependent: :destroy
   has_many :categories, through: :puzzle_categories
-  # has_many :puzzle_tags, dependent: :destroy
-  # has_many :tags, through: :puzzle_tags
+  
   scope :puzzles_sorted, -> { includes(:user).order(created_at: :desc) }
-  # validates :categories, presence: true
+  scope :current_user_author_puzzles,  -> (current_user) {where(user: current_user).order(created_at: :desc)}
+  
 
   has_attached_file :image, styles: { medium: '400x400#' }
   validates_attachment_content_type :image, content_type: %r{\Aimage/.*\z}
@@ -25,14 +25,5 @@ class Puzzle < ApplicationRecord
     end
   end
 
-  scope :all_by_tags, lambda { |tags|
-    questions = includes(:user)
-    questions = if tags
-                  questions.joins(:tags).where(tags: tags).preload(:tags)
-                else
-                  questions.includes(:question_tags, :tags)
-                end
-
-    questions.order(created_at: :desc)
-  }
+  
 end

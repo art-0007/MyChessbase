@@ -7,8 +7,14 @@ class PuzzlesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @pagy, @puzzles = pagy Puzzle.puzzles_sorted, items: 5
-    @puzzles = @puzzles.decorate
+
+    if params[:sort]
+      sort_by_params
+    else
+      @pagy, @puzzles = pagy Puzzle.puzzles_sorted, items: 5
+      @puzzles = @puzzles.decorate
+    end
+    
   end
 
   def new
