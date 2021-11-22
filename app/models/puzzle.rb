@@ -11,7 +11,7 @@ class Puzzle < ApplicationRecord
   
   scope :puzzles_sorted, -> { includes(:user).order(created_at: :desc) }
   scope :current_user_author_puzzles,  -> (current_user) {where(user: current_user).order(created_at: :desc)}
-  
+  scope :puzzles_solved_by_user, -> {joins(:solutions).merge(Solution.solutions_solved)}
 
   has_attached_file :image, styles: { medium: '400x400#' }
   validates_attachment_content_type :image, content_type: %r{\Aimage/.*\z}

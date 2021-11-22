@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @article = current_user.articles.build article_params
     if @article.save
       flash[:success] = 'Article created!'
