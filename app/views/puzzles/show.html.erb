@@ -46,9 +46,12 @@
 <%else%>
 <hr class="my-3">
 
+<% if policy(:solution).create? %>
+
 <h2>Create Solution:</h2>
 
 <%= render 'shared/errors', object: @solution %>
+
 
 <%= form_with model: [@puzzle, @solution] do |f| %>
   <div class="mb-3 row">
@@ -64,6 +67,7 @@
   <%= f.submit "Submit solution!", class: 'btn btn-primary mb-3' %>
 <% end %>
 <%end%>
+<%end%> 
 
 <%= render 'comments/commentable', commentable: @puzzle, comment: @comment,
   html_id: 'puzzleComments' %>

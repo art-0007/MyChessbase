@@ -10,7 +10,8 @@ class SolutionPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.guest?
+    #binding.pry
+    true
   end
 
   def new?
@@ -18,7 +19,8 @@ class SolutionPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin_role? || user.moderator_role? || user.author?(record)
+    #binding.pry
+    true
   end
 
   def edit?

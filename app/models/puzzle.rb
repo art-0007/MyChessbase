@@ -16,12 +16,15 @@ class Puzzle < ApplicationRecord
   has_attached_file :image, styles: { medium: '400x400#' }
   validates_attachment_content_type :image, content_type: %r{\Aimage/.*\z}
 
+
   def categories_attributes=(categories_hashes)
     categories_hashes.each do |_i, category_attributes|
       next if category_attributes[:name].blank?
-
+      
       category = Category.find_or_create_by(name: category_attributes[:name])
       puzzle_categories.build(category: category) unless categories.include?(category)
     end
   end
+ 
 end
+

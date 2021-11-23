@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class SolutionsController < ApplicationController
+  #before_action :require_current_user, except: %i[show index]
   before_action :set_puzzle!
 
   def create
     @solution = @puzzle.solutions.build solution_create_params
     check_solution
+   #binding.pry
     if @solution.solved? && @solution.save
       flash[:success] = 'Puzzle Solved!'
       redirect_to puzzle_path(@puzzle)

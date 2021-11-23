@@ -18,6 +18,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    binding.pry
     @article = current_user.articles.build article_params
     if @article.save
       flash[:success] = 'Article created!'
@@ -65,6 +66,6 @@ class ArticlesController < ApplicationController
   def article_params
     params
       .require(:article)
-      .permit(:title, :body, :user_id, tag_ids: [])
+      .permit(:title, :body, :user_id, :image, tag_ids: [])
   end
 end
