@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :require_current_user, except: %i[show index]
+  before_action :require_current_user
   before_action :set_commentable!
   after_action :verify_authorized
 

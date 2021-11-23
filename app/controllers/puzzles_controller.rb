@@ -22,7 +22,7 @@ class PuzzlesController < ApplicationController
   def create
     @puzzle = current_user.puzzles.build puzzle_params
     update_complexity
-    #binding.pry
+    # binding.pry
     if @puzzle.save
       flash[:success] = 'Puzzle created!'
       redirect_to puzzles_path
@@ -32,7 +32,7 @@ class PuzzlesController < ApplicationController
   end
 
   def show
-    
+    # binding.pry
     @puzzle = @puzzle.decorate
     @solution = @puzzle.solutions.build
     @solution.decorate
@@ -41,7 +41,7 @@ class PuzzlesController < ApplicationController
   def edit; end
 
   def update
-    #binding.pry
+    # binding.pry
     if (@puzzle.update puzzle_params) && update_complexity
       flash[:success] = 'Puzzle updated!'
       redirect_to puzzles_path(@puzzle, anchor: "puzzle-#{@puzzle.id}")
@@ -61,7 +61,7 @@ class PuzzlesController < ApplicationController
   def update_complexity
     puzzle_category = @puzzle.puzzle_categories.last
     puzzle_category.update(complexity: params[:puzzle][:complexity])
-  end 
+  end
 
   def authorize_puzzle!
     authorize(@puzzle || Puzzle)
@@ -75,7 +75,7 @@ class PuzzlesController < ApplicationController
     params
       .require(:puzzle)
       .permit(:title, :body, :solution, :user_id, :image, category_ids: [],
-                      categories_attributes: [:name], puzzle_category_ids: [],
-                      pazzle_categories_attributes: [:complexity])
+                                                          categories_attributes: [:name], puzzle_category_ids: [],
+                                                          pazzle_categories_attributes: [:complexity])
   end
 end

@@ -8,10 +8,6 @@ class CategoriesController < ApplicationController
   def index
     @pagy, @categories = pagy Category.order(created_at: :desc), items: 5
     @categories = @categories.decorate
-    # binding.pry
-    @user_author_puzzles = Puzzle.current_user_author_puzzles current_user
-    @solved_puzzles = Puzzle.joins(:solutions).merge(Solution.solutions_solved)
-    @unsolved_puzzles = Puzzle.joins(:solutions).merge(Solution.solutions_unsolved)
   end
 
   def show

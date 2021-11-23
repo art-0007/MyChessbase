@@ -15,8 +15,8 @@ class User < ApplicationRecord
   has_many :solutions, dependent: :destroy
   has_many :articles, dependent: :destroy
 
-  scope :user_with_most_puzzles, -> { joins(:puzzles).group(:user_id).order('COUNT(puzzles.id) desc').limit(1)}
-  
+  scope :user_with_most_puzzles, -> { joins(:puzzles).group(:user_id).order('COUNT(puzzles.id) desc').limit(1) }
+
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 
   def remember_me
@@ -35,7 +35,6 @@ class User < ApplicationRecord
   end
 
   def author?(obj)
-    #binding.pry
     obj.user == self
   end
 

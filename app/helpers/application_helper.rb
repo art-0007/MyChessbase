@@ -40,6 +40,4 @@ module ApplicationHelper
       [complexity.titleize, complexity]
     end
   end
-
-  
 end
